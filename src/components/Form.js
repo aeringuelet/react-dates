@@ -1,13 +1,15 @@
 import React, { Fragment, useState } from "react";
 
 const Form = ({ createAppointment }) => {
-	const [ appointment, setAppointment ] = useState({
+	const initialState = {
 		pet: '',
 		owner: '',
 		date: '',
 		time: '',
 		symptoms: ''
-	});
+	}
+
+	const [ appointment, setAppointment ] = useState(initialState);
 
 	const handleChange = e => {
 		setAppointment({
@@ -20,6 +22,7 @@ const Form = ({ createAppointment }) => {
 		e.preventDefault();
 
 		createAppointment(appointment);
+		setAppointment(initialState);
 	}
 
 	return (
@@ -34,6 +37,7 @@ const Form = ({ createAppointment }) => {
 					className="u-full-width"
 					placeholder="Pet name"
 					onChange={handleChange}
+					value={appointment.pet}
 				/>
 
 				<label>Owner name</label>
@@ -43,6 +47,7 @@ const Form = ({ createAppointment }) => {
 					className="u-full-width"
 					placeholder="Pet owner name"
 					onChange={handleChange}
+					value={appointment.owner}
 				/>
 
 				<label>Date</label>
@@ -51,6 +56,7 @@ const Form = ({ createAppointment }) => {
 					className="u-full-width" 
 					name="date"
 					onChange={handleChange}
+					value={appointment.date}
 				/>
 
 				<label>Time</label>
@@ -59,13 +65,15 @@ const Form = ({ createAppointment }) => {
 					className="u-full-width" 
 					name="time" 
 					onChange={handleChange}	
+					value={appointment.time}
 				/>
 
 				<label>Symptoms</label>
 				<textarea 
 					className="u-full-width" 
 					name="symptoms"
-					onChange={handleChange}					
+					onChange={handleChange}	
+					value={appointment.symptoms}				
 				></textarea>
 
 				<button type="submit" className="button-primary u-full-width">
